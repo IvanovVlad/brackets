@@ -10,18 +10,20 @@ module.exports = function check(str, bracketsConfig) {
   {
     for (let j=0; j<bracketsConfig.length; j++)
     {
-        if (strArray[i] == bracketsConfig[j][0] && strArray[i+1] == bracketsConfig[j][1])
+        if ((strArray[i] == bracketsConfig[j][0] && strArray[i+1] == bracketsConfig[j][1]) 
+        || (strArray[i] == bracketsConfig[j][1] && strArray[i+1] == bracketsConfig[j][0]))
         {
-          strArray = strArray.splice(i, 2);
+          strArray.splice(i, 2);
           strlength -= 2;
-          console.log(strlength);
-          if (strlength == 0)
-          {
-            return true;
-          }
           i = 0;
         }
       }
     }
-  return false;
+    if (strlength == 0)
+          {
+            return true;
+          }
+          else{
+            return false;
+          }
 }
